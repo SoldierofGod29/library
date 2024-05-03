@@ -1,5 +1,4 @@
 /*styles for library project*/
-
 html,
 body {
     margin: 0;
@@ -10,3 +9,71 @@ body {
 li {
     list-style: none;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url(./depositphotos_193708490-stock-photo-white-paint-wall-texture-closeup.jpg);
+    background-size: 500px;
+}
+
+.top-of-shelf {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-of-shelf > button {
+    height: 40px;
+    width: 80px;
+}
+
+.main-book-shelf {
+    flex-basis: 80%;
+    border-style: double;
+    border-width: 60px;
+    background-image: url('./istockphoto-1372488781-612x612.jpg');
+    background-size: 800px;
+    margin-left: 32px;
+    margin-right: 33px;
+    padding-bottom: 660px;
+}
+
+.open-shelf-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 130px);
+    grid-template-rows: 1fr;
+    justify-content: start;
+    column-gap: 5px;
+    border-bottom: 20px solid black;
+}
+
+.book {
+    display: flex;
+    justify-content: center;
+    height: 660px;
+    width: 130px;
+    background-image: url(./book-spine-cover-mockup-blank-600nw-2003802176.png);
+    background-size: 130px;
+}
+
+.book > ul {
+    display: grid;
+    grid-template-columns: 140px;
+    grid-template-rows: 230px 178px 210px 40px;
+    justify-items: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.book > ul > li {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transform: rotate(90deg);
+}
+
+.book > ul > li:last-of-type {
+    transform: rotate(0deg);
+} 

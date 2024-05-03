@@ -1,6 +1,20 @@
 //Java Script file for Library Project
 
+/*Document and Media Queries for Library Project*/
+const maxWidth1440px = window.matchMedia("(max-width: 1440px)");
+
+const addBookButton = document.querySelector(".add-book");
+const submitForm = document.querySelector("dialog button")
+
+const newShelf = document.createElement("div");
+
+const dialog = document.querySelector("dialog");
+
+/*Arrays for Library Project*/
+
 const myLibrary = [];
+
+/*Functions for Library Project*/
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -9,18 +23,50 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(title, author, pages, read) {
+   let numberOfBooks = myLibrary.length;
 
+   if (numberOfBooks == 0)
+   {
+        myLibrary[0] = new Book(title, author, pages, read);
+   }
+   else
+   {
+        myLibrary[numberOfBooks] = new Book(title, author, pages, read);
+   }
 }
 
-myLibrary[0] = new Book("Finally Free", "Heath Lambert", 176, "read");
-myLibrary[1] = new Book("Abiding in Christ", "Paul Chappel", 153, "not read");
-myLibrary[2] = new Book("The Suffering of Man & The Sovereignty of God", "C. H. Spurgeon", 378, "not read");
-myLibrary[3] = new Book("The Legend of Zelda: Majora's Mask and A Link to the Past", "Akira Himekawa", 402, "read");
 
 
-for(var i = 0; i < myLibrary.length; i++)
-{
-    console.log(myLibrary[i])
-}
+/*Event Listeners for Library Project*/
+
+maxWidth1440px.addEventListener("change", function() {
     
+});
+
+addBookButton.addEventListener("click", function() {
+    dialog.showModal();
+});
+
+submitForm.addEventListener("click", function(event) {
+    let title = document.querySelector("#title");
+    let author = document.querySelector('#author');
+    let pages = document.querySelector('#pages');
+    let read = document.querySelector('#read');
+
+    let readStatus = "";
+
+    if (read.checked == true)
+    {
+        readStatus = "Read"
+    }
+    else
+    {
+        readStatus = "Haven't Read Yet"
+    }
+
+    addBookToLibrary(title.value, author.value, pages.value, readStatus);
+    console.log(myLibrary);
+    event.preventDefault();
+    dialog.close()
+});
