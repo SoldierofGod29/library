@@ -45,7 +45,7 @@ body {
     grid-template-rows: 1fr;
     justify-content: start;
     column-gap: 5px;
-    border-bottom: 20px solid black;
+    border-bottom: 40px double black;
 }
 
 .book {
@@ -60,7 +60,7 @@ body {
 .book > ul {
     display: grid;
     grid-template-columns: 140px;
-    grid-template-rows: 230px 178px 210px 40px;
+    grid-template-rows: 230px 178px 180px 35px 40px;
     justify-items: center;
     align-items: center;
     padding: 0px;
@@ -74,6 +74,7 @@ body {
     transform: rotate(90deg);
 }
 
-.book > ul > li:last-of-type {
+.book > ul > li:last-of-type,
+.book > ul > li:nth-child(4) {
     transform: rotate(0deg);
 } 
