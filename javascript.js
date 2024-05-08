@@ -16,12 +16,15 @@ const bookShelfContainer = document.querySelector(".main-book-shelf");
 //Dialogs
 const dialog = document.querySelector("dialog");
 
+
 /*Arrays and Variables for Library Project*/
 
 //Array for Book constructor
 const myLibrary = [];
 
 //Variables
+let totalBooksInLibrary = 0;
+let totalShelvesInLibrary = 0;
 
 /*Functions for Library Project*/
 
@@ -48,105 +51,97 @@ function addBookToLibrary(title, author, pages, read)
    }
 }
 
-function deleteBookFromLibrary(bookid)
+function deleteAllOfLibrary()
+{
+    if (document.querySelector('.open-shelf-area') != null)
+    {
+        shelfClass = document.querySelector(".open-shelf-area");
+
+        shelfClass.remove();
+    }
+}
+
+function deleteBookFromLibrary(bookid, shelfid)
 {
     let warning = "Are you sure you want to Delete the Book from Your Library?";
     if (confirm(warning) == true)
     {
-        const bookToDelete = document.getElementById('book' + bookid);
+       myLibrary.splice(bookid, 1);
 
-        bookToDelete.remove();
-    }
-    else
-    {
-        console.log("book not deleted")
+       displayBooksInDocument();
+
+       totalBooksInLibrary--;
+
+       if (myLibrary.length == 0)
+       {
+            const removeShelf = document.querySelector('.shelf');
+            removeShelf.remove();
+
+            totalShelvesInLibrary--;
+       }
     }
 }
 
 //Function to loop through myLibrary Array and display it in the DOM
 function displayBooksInDocument()
 {
-    if (document.querySelector('.open-shelf-area') == null)
+    deleteAllOfLibrary();
+
+    const newShelfArea = document.createElement('div');
+    newShelfArea.classList.add('open-shelf-area');
+    bookShelfContainer.appendChild(newShelfArea);
+
+    for (let i = 0; i < myLibrary.length; i++)
     {
-        const newShelf = document.createElement("div");
-        const newBook = document.createElement("div");
-        const newUnorderedList = document.createElement("ul");
-        const newTitleListItem = document.createElement("li");
-        const newAuthorListItem = document.createElement("li");
-        const newReadListItem = document.createElement("li");
-        const newPagesListItem = document.createElement("li");
-        const newButtonListItem = document.createElement("li");
-        const newDelButton = document.createElement("button");
+        let newBook = document.createElement('div');
+        let newUl = document.createElement('ul');
+        let titleLi = document.createElement('li');
+        let authorLi = document.createElement('li');
+        let readLi = document.createElement('li');
+        let pagesLi = document.createElement('li');
+        let buttonLi = document.createElement('li');
+        const newDelButton = document.createElement('button');
+            
+        newBook.classList.add('book');
+        newBook.id = "book" + i;
+        newShelfArea.appendChild(newBook);
 
-        newShelf.classList.add("open-shelf-area");
+        newBook.appendChild(newUl);
 
+        titleLi.textContent = myLibrary[i].title;
+        newUl.appendChild(titleLi);
+
+        authorLi.textContent = myLibrary[i].author;
+        newUl.appendChild(authorLi);
+
+        readLi.textContent = myLibrary[i].read;
+        newUl.appendChild(readLi);
+
+        pagesLi.textContent = myLibrary[i].pages + ' pages';
+        newUl.appendChild(pagesLi);
+
+        newUl.appendChild(buttonLi);
+        newDelButton.textContent = "Delete Book";
+        buttonLi.appendChild(newDelButton);
+        newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ")");
+    }
+
+    if (totalBooksInLibrary == 0 || totalBooksInLibrary % 9 == 0)
+    {
+        const newShelf = document.createElement('div');
+        newShelf.classList.add('shelf');
+        newShelf.id = "s" + totalShelvesInLibrary;
         bookShelfContainer.appendChild(newShelf);
 
-        for (let i = 0; i < myLibrary.length; i++)
+        for(let j = 0; j < totalShelvesInLibrary; j++)
         {
-            newBook.classList.add("book");
-            newBook.id = "book" + (myLibrary.length - 1);
-            newShelf.appendChild(newBook);
+            let nextShelf = document.querySelector('#s' + totalShelvesInLibrary);
 
-            newBook.appendChild(newUnorderedList);
+            nextShelf.style.top = 82.4 + 'rem';  
+        }
 
-            newTitleListItem.textContent = myLibrary[i].title;
-            newUnorderedList.appendChild(newTitleListItem);
-
-            newAuthorListItem.textContent = myLibrary[i].author;
-            newUnorderedList.appendChild(newAuthorListItem);
-
-            newReadListItem.textContent = myLibrary[i].read;
-            newUnorderedList.appendChild(newReadListItem);
-
-            newPagesListItem.textContent = myLibrary[i].pages + " pages";
-            newUnorderedList.appendChild(newPagesListItem); 
-
-            newUnorderedList.appendChild(newButtonListItem);
-            newDelButton.textContent = "Delete Book";
-            newButtonListItem.appendChild(newDelButton);
-            newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ")");
-        } 
+        totalShelvesInLibrary++;
     }
-    else
-    {
-        const existingShelf = document.querySelector('.open-shelf-area');
-        const newBook = document.createElement("div");
-        const newUnorderedList = document.createElement("ul");
-        const newTitleListItem = document.createElement("li");
-        const newAuthorListItem = document.createElement("li");
-        const newReadListItem = document.createElement("li");
-        const newPagesListItem = document.createElement("li");
-        const newButtonListItem = document.createElement("li");
-        const newDelButton = document.createElement("button");
-
-        for (let i = 0; i < myLibrary.length; i++)
-        {
-            newBook.classList.add("book");
-            newBook.id = "book" + (myLibrary.length - 1);
-            existingShelf.appendChild(newBook);
-
-            newBook.appendChild(newUnorderedList);
-
-            newTitleListItem.textContent = myLibrary[i].title;
-            newUnorderedList.appendChild(newTitleListItem);
-
-            newAuthorListItem.textContent = myLibrary[i].author;
-            newUnorderedList.appendChild(newAuthorListItem);
-
-            newReadListItem.textContent = myLibrary[i].read;
-            newUnorderedList.appendChild(newReadListItem);
-
-
-            newPagesListItem.textContent = myLibrary[i].pages + " pages";
-            newUnorderedList.appendChild(newPagesListItem);
-
-            newUnorderedList.appendChild(newButtonListItem);
-            newDelButton.textContent = "Delete Book";
-            newButtonListItem.appendChild(newDelButton);
-            newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ")");
-        } 
-    }    
 }
 
 
@@ -180,6 +175,8 @@ submitForm.addEventListener("click", function(event) {
     addBookToLibrary(title.value, author.value, pages.value, readStatus);
 
     displayBooksInDocument();
+
+    totalBooksInLibrary++;
 
     event.preventDefault();
     dialog.close()

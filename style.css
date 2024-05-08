@@ -29,6 +29,7 @@ body {
 }
 
 .main-book-shelf {
+    position: relative;
     flex-basis: 80%;
     border-style: double;
     border-width: 60px;
@@ -39,13 +40,20 @@ body {
     padding-bottom: 660px;
 }
 
+.shelf {
+    position: absolute;
+    width: 1260px;
+    border-bottom: 40px double black;
+    top: 41.3rem;
+}
+
 .open-shelf-area {
     display: grid;
     grid-template-columns: repeat(auto-fit, 130px);
     grid-template-rows: 1fr;
     justify-content: start;
     column-gap: 5px;
-    border-bottom: 40px double black;
+    row-gap: 40px;
 }
 
 .book {
