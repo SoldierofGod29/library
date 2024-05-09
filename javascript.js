@@ -202,6 +202,9 @@ function displayBooksInDocument(numBooks)
         let titleLi = document.createElement('li');
         let authorLi = document.createElement('li');
         let readLi = document.createElement('li');
+        let readLabel = document.createElement('label');
+        let readInput = document.createElement('input');
+        let readSpan = document.createElement('span');
         let pagesLi = document.createElement('li');
         let buttonLi = document.createElement('li');
         const newDelButton = document.createElement('button');
@@ -218,8 +221,13 @@ function displayBooksInDocument(numBooks)
         authorLi.textContent = myLibrary[i].author;
         newUl.appendChild(authorLi);
 
-        readLi.textContent = myLibrary[i].read;
         newUl.appendChild(readLi);
+        readLabel.textContent = myLibrary[i].read;
+        readLi.appendChild(readLabel);
+        readInput.type = "checkbox";
+        readLabel.appendChild(readInput);
+        readSpan.classList.add('slider');
+        readLabel.appendChild(readSpan);
 
         pagesLi.textContent = myLibrary[i].pages + ' pages';
         newUl.appendChild(pagesLi);
