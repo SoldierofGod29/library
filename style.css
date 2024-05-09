@@ -42,9 +42,10 @@ body {
 
 .shelf {
     position: absolute;
-    width: 1260px;
     border-bottom: 40px double black;
     top: 41.3rem;
+    left: 0;
+    right: 0;
 }
 
 .open-shelf-area {
