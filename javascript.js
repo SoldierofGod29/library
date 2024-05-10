@@ -218,6 +218,7 @@ function displayAfterDeletion()
         readLi.appendChild(readLabel);
         readInput.type = "checkbox";
         readInput.id = "read-status" + i;
+        readInput.setAttribute('onclick', "changeReadStatus(" + i + ")");
         readLabel.appendChild(readInput);
         readSpan.classList.add('slider-round');
         readLabel.appendChild(readSpan);
