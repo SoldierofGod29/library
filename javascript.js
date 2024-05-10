@@ -11,6 +11,7 @@ const maxWidth320 = window.matchMedia('(max-width: 320px)');
 const addBookButton = document.querySelector(".add-book");
 const submitForm = document.querySelector("dialog button");
 const deleteButton = document.querySelector(".delete-book");
+const switchLabel = document.querySelector('switch');
 
 //Divs
 const bookShelfContainer = document.querySelector(".main-book-shelf");
@@ -28,7 +29,6 @@ const myLibrary = [];
 let totalBooksInLibrary = 0;
 let totalShelvesInLibrary = 0;
 
-console.log(windowWidth);
 /*Functions for Library Project*/
 
 //Book constructor for holding Book info
@@ -37,6 +37,39 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+}
+
+Book.prototype.changeStatus = function(readStatus){
+    if (readStatus.checked == true)
+    {
+        this.read = true;
+    }
+    else if (readStatus.checked == false)
+    {
+        this.read = false;
+    }
+}
+
+function changeReadStatus(index) {
+
+    let readStatus = document.querySelector('#read-status' + index);
+
+    myLibrary[index].changeStatus(readStatus);
+    displayBooksInDocument();
+}
+
+function checkReadStatus(checked, index)
+{
+    let switchInput = document.querySelector('#read-status' + index);
+    
+    if (checked == true)
+    {
+        switchInput.checked = true;
+    }
+    else
+    {
+        switchInput.checked = false;
+    }
 }
 
 function checkNumBooksOnShelf()
@@ -88,7 +121,6 @@ function checkNumBooksOnShelf()
             numBooksOnShelf = 18;
     }
 
-    console.log(numBooksOnShelf);
     return numBooksOnShelf;
 }
 
@@ -152,6 +184,10 @@ function displayAfterDeletion()
         let titleLi = document.createElement('li');
         let authorLi = document.createElement('li');
         let readLi = document.createElement('li');
+        let readP = document.createElement('p');
+        let readLabel = document.createElement('label');
+        let readInput = document.createElement('input');
+        let readSpan = document.createElement('span');
         let pagesLi = document.createElement('li');
         let buttonLi = document.createElement('li');
         const newDelButton = document.createElement('button');
@@ -168,8 +204,23 @@ function displayAfterDeletion()
         authorLi.textContent = myLibrary[i].author;
         newUl.appendChild(authorLi);
 
-        readLi.textContent = myLibrary[i].read;
         newUl.appendChild(readLi);
+        if (myLibrary[i].read == true)
+        {
+            readP.textContent = "Read";
+        }
+        else
+        {
+            readP.textContent = "Haven't Read Yet";
+        }
+        readLi.appendChild(readP);
+        readLabel.classList.add('switch');
+        readLi.appendChild(readLabel);
+        readInput.type = "checkbox";
+        readInput.id = "read-status" + i;
+        readLabel.appendChild(readInput);
+        readSpan.classList.add('slider-round');
+        readLabel.appendChild(readSpan);
 
         pagesLi.textContent = myLibrary[i].pages + ' pages';
         newUl.appendChild(pagesLi);
@@ -178,6 +229,7 @@ function displayAfterDeletion()
         newDelButton.textContent = "Delete Book";
         buttonLi.appendChild(newDelButton);
         newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ", " + totalShelvesInLibrary + ")");
+        checkReadStatus(myLibrary[i].read, i);
     }
 }
 
@@ -223,11 +275,20 @@ function displayBooksInDocument(numBooks)
         newUl.appendChild(authorLi);
 
         newUl.appendChild(readLi);
-        readP.textContent = myLibrary[i].read;
+        if (myLibrary[i].read == true)
+        {
+            readP.textContent = "Read";
+        }
+        else
+        {
+            readP.textContent = "Haven't Read Yet";
+        }
         readLi.appendChild(readP);
         readLabel.classList.add('switch');
         readLi.appendChild(readLabel);
         readInput.type = "checkbox";
+        readInput.id = "read-status" + i;
+        readInput.setAttribute('onclick', "changeReadStatus(" + i + ")");
         readLabel.appendChild(readInput);
         readSpan.classList.add('slider-round');
         readLabel.appendChild(readSpan);
@@ -239,6 +300,7 @@ function displayBooksInDocument(numBooks)
         newDelButton.textContent = "Delete Book";
         buttonLi.appendChild(newDelButton);
         newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ", " + totalShelvesInLibrary + ")");
+        checkReadStatus(myLibrary[i].read, i);
     }
 
     if (totalBooksInLibrary == 0 || totalBooksInLibrary % numBooks == 0)
@@ -275,24 +337,15 @@ submitForm.addEventListener("click", function(event) {
     let pages = document.querySelector('#pages');
     let read = document.querySelector('#read');
 
-    let readStatus = "";
-
-    if (read.checked == true)
-    {
-        readStatus = "Read"
-    }
-    else
-    {
-        readStatus = "Haven't Read Yet"
-    }
-
-    addBookToLibrary(title.value, author.value, pages.value, readStatus);
+    addBookToLibrary(title.value, author.value, pages.value, read.checked);
 
     displayBooksInDocument(checkNumBooksOnShelf());
-
     totalBooksInLibrary++;
 
     event.preventDefault();
     dialog.close()
 });
+
+
+
 
