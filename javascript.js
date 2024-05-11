@@ -3,9 +3,9 @@
 /*Document and Media Queries for Library Project*/
 
 //Variables for different widths of the window
-const windowWidth = window.screen.width;
 
-const maxWidth320 = window.matchMedia('(max-width: 320px)');
+
+const maxWidth600 = window.matchMedia('(max-width: 600px)');
 
 //Buttons
 const addBookButton = document.querySelector(".add-book");
@@ -26,7 +26,6 @@ const dialog = document.querySelector("dialog");
 const myLibrary = [];
 
 //Variables
-let totalBooksInLibrary = 0;
 let totalShelvesInLibrary = 0;
 
 /*Functions for Library Project*/
@@ -39,6 +38,7 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+//Book prototype function to change status of read
 Book.prototype.changeStatus = function(readStatus){
     if (readStatus.checked == true)
     {
@@ -50,14 +50,17 @@ Book.prototype.changeStatus = function(readStatus){
     }
 }
 
+//Function to change status of read on click of the input checkbox slider
 function changeReadStatus(index) {
 
     let readStatus = document.querySelector('#read-status' + index);
 
     myLibrary[index].changeStatus(readStatus);
-    displayBooksInDocument();
+    displayBooksInDocument(checkNumBooksOnShelf());
 }
 
+//Function to check if input checked in the modal for read status is true or false
+// to display the slider in the correct position 
 function checkReadStatus(checked, index)
 {
     let switchInput = document.querySelector('#read-status' + index);
@@ -72,13 +75,26 @@ function checkReadStatus(checked, index)
     }
 }
 
+//Function to change number of books before adding or deleting shelves depending
+// on the width of the screen
 function checkNumBooksOnShelf()
 {
-    let numBooksOnShelf;
+    let windowWidth = window.innerWidth;
 
+    let numBooksOnShelf;
+    console.log(windowWidth);
     switch (true)
     {
-        case (windowWidth > 0 && windowWidth < 990):
+        case (windowWidth > 499 && windowWidth < 600):
+            numBooksOnShelf = 2;
+            break;
+        case (windowWidth > 599 && windowWidth < 735):
+            numBooksOnShelf = 3;
+            break;
+        case (windowWidth > 734 && windowWidth < 870):
+            numBooksOnShelf = 4;
+            break;
+        case (windowWidth > 869 && windowWidth < 990):
             numBooksOnShelf = 5;
             break;
         case (windowWidth > 989 && windowWidth < 1125):
@@ -120,7 +136,7 @@ function checkNumBooksOnShelf()
         default:
             numBooksOnShelf = 18;
     }
-
+    console.log(numBooksOnShelf);
     return numBooksOnShelf;
 }
 
@@ -139,6 +155,7 @@ function addBookToLibrary(title, author, pages, read)
    }
 }
 
+//Function to delete the whole Library
 function deleteAllOfLibrary()
 {
     if (document.querySelector('.open-shelf-area') != null)
@@ -149,6 +166,7 @@ function deleteAllOfLibrary()
     }
 }
 
+//Function to delete book from library array and document
 function deleteBookFromLibrary(bookid, shelfid)
 {
     let warning = "Are you sure you want to Delete the Book from Your Library?";
@@ -163,12 +181,11 @@ function deleteBookFromLibrary(bookid, shelfid)
             totalShelvesInLibrary--;
         }
 
-        totalBooksInLibrary--;
-
         displayAfterDeletion();       
     }
 }
 
+//Function to redisplay the library after deleting a book
 function displayAfterDeletion()
 {
     deleteAllOfLibrary();
@@ -211,7 +228,7 @@ function displayAfterDeletion()
         }
         else
         {
-            readP.textContent = "Haven't Read Yet";
+            readP.textContent = "Haven't Read";
         }
         readLi.appendChild(readP);
         readLabel.classList.add('switch');
@@ -239,7 +256,7 @@ function displayBooksInDocument(numBooks)
 {
     deleteAllOfLibrary();
 
-    if (totalBooksInLibrary % numBooks == 0)
+    if ((myLibrary.length - 1) % numBooks == 0)
     {
         totalShelvesInLibrary++;
     }
@@ -282,7 +299,7 @@ function displayBooksInDocument(numBooks)
         }
         else
         {
-            readP.textContent = "Haven't Read Yet";
+            readP.textContent = "Haven't Read";
         }
         readLi.appendChild(readP);
         readLabel.classList.add('switch');
@@ -304,10 +321,10 @@ function displayBooksInDocument(numBooks)
         checkReadStatus(myLibrary[i].read, i);
     }
 
-    if (totalBooksInLibrary == 0 || totalBooksInLibrary % numBooks == 0)
+    if (myLibrary.length == 0 || (myLibrary.length - 1) % numBooks == 0)
     {
-        let lastBook = document.querySelector('#book' + totalBooksInLibrary);
-
+        let lastBook = document.querySelector('#book' + (myLibrary.length - 1));
+        console.log(myLibrary.length)
         let positionOfLastBook = lastBook.offsetTop;
 
         const newShelf = document.createElement('div');
@@ -341,10 +358,19 @@ submitForm.addEventListener("click", function(event) {
     addBookToLibrary(title.value, author.value, pages.value, read.checked);
 
     displayBooksInDocument(checkNumBooksOnShelf());
-    totalBooksInLibrary++;
 
     event.preventDefault();
     dialog.close()
+});
+
+
+maxWidth600.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        displayBooksInDocument(checkNumBooksOnShelf());
+    }
+
 });
 
 
