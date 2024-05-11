@@ -5,7 +5,21 @@
 //Variables for different widths of the window
 
 
-const maxWidth600 = window.matchMedia('(max-width: 600px)');
+const maxWidth599 = window.matchMedia('(max-width: 599px)');
+const maxWidth734 = window.matchMedia('(max-width: 734px)');
+const maxWidth869 = window.matchMedia('(max-width: 869px)');
+const maxWidth989 = window.matchMedia('(max-width: 989px)');
+const maxWidth1124 = window.matchMedia('(max-width: 1124px)');
+const maxWidth1259 = window.matchMedia('(max-width: 1259px)');
+const maxWidth1394 = window.matchMedia('(max-width: 1394px)');
+const maxWidth1529 = window.matchMedia('(max-width: 1529px)');
+const maxWidth1664 = window.matchMedia('(max-width: 1664px)');
+const maxWidth1799 = window.matchMedia('(max-width: 1799px)');
+const maxWidth1934 = window.matchMedia('(max-width: 1934px)');
+const maxWidth2069 = window.matchMedia('(max-width: 2069px)');
+const maxWidth2204 = window.matchMedia('(max-width: 2204px)');
+const maxWidth2339 = window.matchMedia('(max-width: 2339px)');
+const maxWidth2475 = window.matchMedia('(max-width: 2475px)');
 
 //Buttons
 const addBookButton = document.querySelector(".add-book");
@@ -82,7 +96,6 @@ function checkNumBooksOnShelf()
     let windowWidth = window.innerWidth;
 
     let numBooksOnShelf;
-    console.log(windowWidth);
     switch (true)
     {
         case (windowWidth > 499 && windowWidth < 600):
@@ -136,7 +149,6 @@ function checkNumBooksOnShelf()
         default:
             numBooksOnShelf = 18;
     }
-    console.log(numBooksOnShelf);
     return numBooksOnShelf;
 }
 
@@ -173,7 +185,7 @@ function deleteBookFromLibrary(bookid, shelfid)
     if (confirm(warning) == true)
     {
         myLibrary.splice(bookid, 1);
-        if (myLibrary.length == 0 || myLibrary.length % checkNumBooksOnShelf() == 0)
+        if (myLibrary.length == 0 || (myLibrary.length) % checkNumBooksOnShelf() == 0)
         {
             const removeShelf = document.querySelector('#s' + shelfid);
             removeShelf.remove();
@@ -324,7 +336,6 @@ function displayBooksInDocument(numBooks)
     if (myLibrary.length == 0 || (myLibrary.length - 1) % numBooks == 0)
     {
         let lastBook = document.querySelector('#book' + (myLibrary.length - 1));
-        console.log(myLibrary.length)
         let positionOfLastBook = lastBook.offsetTop;
 
         const newShelf = document.createElement('div');
@@ -364,15 +375,377 @@ submitForm.addEventListener("click", function(event) {
 });
 
 
-maxWidth600.addEventListener("change", function(){
+maxWidth599.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        displayBooksInDocument(checkNumBooksOnShelf());
-    }
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
 
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 599 && widthOfWindow < 734)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow <= 599 && widthOfWindow > 499)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
 });
 
+maxWidth734.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
 
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 734)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 734 || widthOfWindow < 734)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
 
+maxWidth869.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
 
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 869)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 869 || widthOfWindow < 869)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth989.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 989)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 989 || widthOfWindow < 989)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1124.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1124)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1124 || widthOfWindow < 1124)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1259.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1259)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1259 || widthOfWindow < 1259)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1394.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1394)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1394 || widthOfWindow < 1394)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1529.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1529)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1529 || widthOfWindow < 1529)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1664.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1664)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1664 || widthOfWindow < 1664)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1799.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1799)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1799 || widthOfWindow < 1799)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth1934.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 1934)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 1934 || widthOfWindow < 1934)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth2069.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 2069)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 2069 || widthOfWindow < 2069)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth2204.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 2204)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 2204 || widthOfWindow < 2204)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth2339.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 2339)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 2339 || widthOfWindow < 2339)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
+
+maxWidth2475.addEventListener("change", function(){
+    
+    if(document.querySelector('.open-shelf-area') != null)
+    {
+        let shelfId;
+        let widthOfWindow = window.innerWidth;
+
+        let shelf = document.querySelectorAll('.shelf');
+        shelf.forEach(function(currentValue){
+            shelfId = currentValue.id;
+        })
+        if (widthOfWindow > 2475)
+        {
+            let shelfToDelete = document.querySelector('#' + shelfId);
+            shelfToDelete.remove();
+            totalShelvesInLibrary--;
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+        else if (widthOfWindow == 2475 || widthOfWindow < 2475)
+        {
+            displayBooksInDocument(checkNumBooksOnShelf());
+        }
+    }
+});
