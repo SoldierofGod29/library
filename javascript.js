@@ -1,25 +1,23 @@
 //Java Script file for Library Project
 
-/*Document and Media Queries for Library Project*/
+/*Document, Media Queries, and Arrays for Library Project*/
 
 //Variables for different widths of the window
-
-
-const maxWidth599 = window.matchMedia('(max-width: 599px)');
-const maxWidth734 = window.matchMedia('(max-width: 734px)');
-const maxWidth869 = window.matchMedia('(max-width: 869px)');
-const maxWidth989 = window.matchMedia('(max-width: 989px)');
-const maxWidth1124 = window.matchMedia('(max-width: 1124px)');
-const maxWidth1259 = window.matchMedia('(max-width: 1259px)');
-const maxWidth1394 = window.matchMedia('(max-width: 1394px)');
-const maxWidth1529 = window.matchMedia('(max-width: 1529px)');
-const maxWidth1664 = window.matchMedia('(max-width: 1664px)');
-const maxWidth1799 = window.matchMedia('(max-width: 1799px)');
-const maxWidth1934 = window.matchMedia('(max-width: 1934px)');
-const maxWidth2069 = window.matchMedia('(max-width: 2069px)');
-const maxWidth2204 = window.matchMedia('(max-width: 2204px)');
-const maxWidth2339 = window.matchMedia('(max-width: 2339px)');
-const maxWidth2475 = window.matchMedia('(max-width: 2475px)');
+const maxWidth599 = window.matchMedia('(min-width: 499px) and (max-width: 599px)');
+const maxWidth734 = window.matchMedia('(min-width: 600px) and (max-width: 734px)');
+const maxWidth869 = window.matchMedia('(min-width: 735px) and (max-width: 869px)');
+const maxWidth1004 = window.matchMedia('(min-width: 870px) and (max-width: 1004px)');
+const maxWidth1139 = window.matchMedia('(min-width: 1005px) and (max-width: 1139px)');
+const maxWidth1274 = window.matchMedia('(min-width: 1140px) and (max-width: 1274px)');
+const maxWidth1409 = window.matchMedia('(min-width: 1275px) and (max-width: 1409px)');
+const maxWidth1544 = window.matchMedia('(min-width: 1410px) and (max-width: 1544px)');
+const maxWidth1679 = window.matchMedia('(min-width: 1545px) and (max-width: 1679px)');
+const maxWidth1814 = window.matchMedia('(min-width: 1680px) and (max-width: 1814px)');
+const maxWidth1949 = window.matchMedia('(min-width: 1815px) and (max-width: 1949px)');
+const maxWidth2084 = window.matchMedia('(min-width: 1950px) and (max-width: 2084px)');
+const maxWidth2219 = window.matchMedia('(min-width: 2085px) and (max-width: 2219px)');
+const maxWidth2354 = window.matchMedia('(min-width: 2220px) and (max-width: 2354px)');
+const maxWidth2489 = window.matchMedia('(min-width: 2355px) and (max-width: 2489px)');
 
 //Buttons
 const addBookButton = document.querySelector(".add-book");
@@ -33,14 +31,8 @@ const bookShelfContainer = document.querySelector(".main-book-shelf");
 //Dialogs
 const dialog = document.querySelector("dialog");
 
-
-/*Arrays and Variables for Library Project*/
-
 //Array for Book constructor
 const myLibrary = [];
-
-//Variables
-let totalShelvesInLibrary = 0;
 
 /*Functions for Library Project*/
 
@@ -94,7 +86,6 @@ function checkReadStatus(checked, index)
 function checkNumBooksOnShelf()
 {
     let windowWidth = window.innerWidth;
-
     let numBooksOnShelf;
     switch (true)
     {
@@ -107,43 +98,43 @@ function checkNumBooksOnShelf()
         case (windowWidth > 734 && windowWidth < 870):
             numBooksOnShelf = 4;
             break;
-        case (windowWidth > 869 && windowWidth < 990):
+        case (windowWidth > 869 && windowWidth < 1005):
             numBooksOnShelf = 5;
             break;
-        case (windowWidth > 989 && windowWidth < 1125):
+        case (windowWidth > 1004 && windowWidth < 1140):
             numBooksOnShelf = 6;
             break;
-        case (windowWidth > 1124 && windowWidth < 1260):
+        case (windowWidth > 1139 && windowWidth < 1275):
             numBooksOnShelf = 7;
             break;
-        case (windowWidth > 1259 && windowWidth < 1395):
+        case (windowWidth > 1274 && windowWidth < 1410):
             numBooksOnShelf = 8;
             break;
-        case (windowWidth > 1394 && windowWidth < 1530):
+        case (windowWidth > 1409 && windowWidth < 1545):
             numBooksOnShelf = 9;
             break;
-        case (windowWidth > 1529 && windowWidth < 1665):
+        case (windowWidth > 1544 && windowWidth < 1680):
             numBooksOnShelf = 10;
             break;
-        case (windowWidth > 1664 && windowWidth < 1800):
+        case (windowWidth > 1679 && windowWidth < 1815):
             numBooksOnShelf = 11;
             break;
-        case (windowWidth > 1799 && windowWidth < 1935):
+        case (windowWidth > 1814 && windowWidth < 1950):
             numBooksOnShelf = 12;
             break;
-        case (windowWidth > 1934 && windowWidth < 2070):
+        case (windowWidth > 1949 && windowWidth < 2085):
             numBooksOnShelf = 13;
             break;
-        case (windowWidth > 2069 && windowWidth < 2205):
+        case (windowWidth > 2084 && windowWidth < 2220):
             numBooksOnShelf = 14;
             break;
-        case (windowWidth > 2204 && windowWidth < 2340):
+        case (windowWidth > 2219 && windowWidth < 2355):
             numBooksOnShelf = 15;
             break;
-        case (windowWidth > 2339 && windowWidth < 2476):
+        case (windowWidth > 2354 && windowWidth < 2490):
             numBooksOnShelf = 16;
             break;
-        case (windowWidth > 2475 && windowWidth < 2610):
+        case (windowWidth > 2489 && windowWidth < 2625):
             numBooksOnShelf = 17;
             break;
         default:
@@ -179,87 +170,13 @@ function deleteAllOfLibrary()
 }
 
 //Function to delete book from library array and document
-function deleteBookFromLibrary(bookid, shelfid)
+function deleteBookFromLibrary(bookid)
 {
     let warning = "Are you sure you want to Delete the Book from Your Library?";
     if (confirm(warning) == true)
     {
         myLibrary.splice(bookid, 1);
-        if (myLibrary.length == 0 || (myLibrary.length) % checkNumBooksOnShelf() == 0)
-        {
-            const removeShelf = document.querySelector('#s' + shelfid);
-            removeShelf.remove();
-
-            totalShelvesInLibrary--;
-        }
-
-        displayAfterDeletion();       
-    }
-}
-
-//Function to redisplay the library after deleting a book
-function displayAfterDeletion()
-{
-    deleteAllOfLibrary();
-
-    const newShelfArea = document.createElement('div');
-    newShelfArea.classList.add('open-shelf-area');
-    bookShelfContainer.appendChild(newShelfArea);
-
-    for (let i = 0; i < myLibrary.length; i++)
-    {
-        let newBook = document.createElement('div');
-        let newUl = document.createElement('ul');
-        let titleLi = document.createElement('li');
-        let authorLi = document.createElement('li');
-        let readLi = document.createElement('li');
-        let readP = document.createElement('p');
-        let readLabel = document.createElement('label');
-        let readInput = document.createElement('input');
-        let readSpan = document.createElement('span');
-        let pagesLi = document.createElement('li');
-        let buttonLi = document.createElement('li');
-        const newDelButton = document.createElement('button');
-            
-        newBook.classList.add('book');
-        newBook.id = "book" + i;
-        newShelfArea.appendChild(newBook);
-
-        newBook.appendChild(newUl);
-
-        titleLi.textContent = myLibrary[i].title;
-        newUl.appendChild(titleLi);
-
-        authorLi.textContent = myLibrary[i].author;
-        newUl.appendChild(authorLi);
-
-        newUl.appendChild(readLi);
-        if (myLibrary[i].read == true)
-        {
-            readP.textContent = "Read";
-        }
-        else
-        {
-            readP.textContent = "Haven't Read";
-        }
-        readLi.appendChild(readP);
-        readLabel.classList.add('switch');
-        readLi.appendChild(readLabel);
-        readInput.type = "checkbox";
-        readInput.id = "read-status" + i;
-        readInput.setAttribute('onclick', "changeReadStatus(" + i + ")");
-        readLabel.appendChild(readInput);
-        readSpan.classList.add('slider-round');
-        readLabel.appendChild(readSpan);
-
-        pagesLi.textContent = myLibrary[i].pages + ' pages';
-        newUl.appendChild(pagesLi);
-
-        newUl.appendChild(buttonLi);
-        newDelButton.textContent = "Delete Book";
-        buttonLi.appendChild(newDelButton);
-        newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ", " + totalShelvesInLibrary + ")");
-        checkReadStatus(myLibrary[i].read, i);
+        displayBooksInDocument(checkNumBooksOnShelf());     
     }
 }
 
@@ -268,11 +185,6 @@ function displayBooksInDocument(numBooks)
 {
     deleteAllOfLibrary();
 
-    if ((myLibrary.length - 1) % numBooks == 0)
-    {
-        totalShelvesInLibrary++;
-    }
-
     const newShelfArea = document.createElement('div');
     newShelfArea.classList.add('open-shelf-area');
     bookShelfContainer.appendChild(newShelfArea);
@@ -329,37 +241,46 @@ function displayBooksInDocument(numBooks)
         newUl.appendChild(buttonLi);
         newDelButton.textContent = "Delete Book";
         buttonLi.appendChild(newDelButton);
-        newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ", " + totalShelvesInLibrary + ")");
+        newDelButton.setAttribute('onclick', "deleteBookFromLibrary(" + i + ")");
         checkReadStatus(myLibrary[i].read, i);
     }
 
-    if (myLibrary.length == 0 || (myLibrary.length - 1) % numBooks == 0)
-    {
-        let lastBook = document.querySelector('#book' + (myLibrary.length - 1));
-        let positionOfLastBook = lastBook.offsetTop;
+    let allShelves = document.querySelectorAll('.shelf');
+
+    allShelves.forEach(function(currentValue){
+        currentValue.remove(); 
+    });
+
+    let book = document.querySelectorAll('.book');
+
+    book.forEach(function(currentValue, index){
+        let positionOfLastBook;
 
         const newShelf = document.createElement('div');
-        newShelf.classList.add('shelf');
-        newShelf.id = "s" + totalShelvesInLibrary;
-        
-        bookShelfContainer.appendChild(newShelf);
 
-        for(let j = 0; j < totalShelvesInLibrary; j++)
+        if (index % numBooks == 0)
         {
-            let nextShelf = document.querySelector('#s' + totalShelvesInLibrary);
-
-            nextShelf.style.top = (positionOfLastBook + 661) + 'px';  
+            newShelf.classList.add('shelf');
+            newShelf.id = "s" + index;
+                                
+            bookShelfContainer.appendChild(newShelf);
+            
+            positionOfLastBook = currentValue.offsetTop;
+            
+            newShelf.style.top = (positionOfLastBook + 661) + 'px';
         }
-    }
+    });
 }
-
 
 /*Event Listeners for Library Project*/
 
+//displays modal on click
 addBookButton.addEventListener("click", function() {
     dialog.showModal();
 });
 
+//Event Listener that puts the form into the Book object, then the myLibrary Array,
+// then displays the library, and closes the modal 
 submitForm.addEventListener("click", function(event) {
     let title = document.querySelector("#title");
     let author = document.querySelector('#author');
@@ -374,29 +295,13 @@ submitForm.addEventListener("click", function(event) {
     dialog.close()
 });
 
-
+// Event Listeners for when the user changes the screen width to redisplay the 
+//  library from the smallest phone to a 4k tv
 maxWidth599.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 599 && widthOfWindow < 734)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow <= 599 && widthOfWindow > 499)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
@@ -404,24 +309,7 @@ maxWidth734.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 734)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 734 || widthOfWindow < 734)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());  
     }
 });
 
@@ -429,323 +317,102 @@ maxWidth869.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 869)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 869 || widthOfWindow < 869)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth989.addEventListener("change", function(){
+maxWidth1004.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 989)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 989 || widthOfWindow < 989)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1124.addEventListener("change", function(){
+maxWidth1139.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1124)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1124 || widthOfWindow < 1124)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1259.addEventListener("change", function(){
+maxWidth1274.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1259)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1259 || widthOfWindow < 1259)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1394.addEventListener("change", function(){
+maxWidth1409.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1394)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1394 || widthOfWindow < 1394)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1529.addEventListener("change", function(){
+maxWidth1544.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1529)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1529 || widthOfWindow < 1529)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1664.addEventListener("change", function(){
+maxWidth1679.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1664)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1664 || widthOfWindow < 1664)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf()); 
     }
 });
 
-maxWidth1799.addEventListener("change", function(){
+maxWidth1814.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1799)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1799 || widthOfWindow < 1799)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth1934.addEventListener("change", function(){
+maxWidth1949.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 1934)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 1934 || widthOfWindow < 1934)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth2069.addEventListener("change", function(){
+maxWidth2084.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 2069)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 2069 || widthOfWindow < 2069)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth2204.addEventListener("change", function(){
+maxWidth2219.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 2204)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 2204 || widthOfWindow < 2204)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth2339.addEventListener("change", function(){
+maxWidth2354.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 2339)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 2339 || widthOfWindow < 2339)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf());
     }
 });
 
-maxWidth2475.addEventListener("change", function(){
+maxWidth2489.addEventListener("change", function(){
     
     if(document.querySelector('.open-shelf-area') != null)
     {
-        let shelfId;
-        let widthOfWindow = window.innerWidth;
-
-        let shelf = document.querySelectorAll('.shelf');
-        shelf.forEach(function(currentValue){
-            shelfId = currentValue.id;
-        })
-        if (widthOfWindow > 2475)
-        {
-            let shelfToDelete = document.querySelector('#' + shelfId);
-            shelfToDelete.remove();
-            totalShelvesInLibrary--;
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
-        else if (widthOfWindow == 2475 || widthOfWindow < 2475)
-        {
-            displayBooksInDocument(checkNumBooksOnShelf());
-        }
+        displayBooksInDocument(checkNumBooksOnShelf()); 
     }
 });
