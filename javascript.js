@@ -21,7 +21,7 @@ const maxWidth2489 = window.matchMedia('(min-width: 2355px) and (max-width: 2489
 
 //Buttons
 const addBookButton = document.querySelector(".add-book");
-const submitForm = document.querySelector("dialog button");
+const dialogForm = document.querySelector("dialog");
 const deleteButton = document.querySelector(".delete-book");
 const switchLabel = document.querySelector('switch');
 
@@ -277,12 +277,22 @@ function displayBooksInDocument(numBooks)
 //displays modal on click
 addBookButton.addEventListener("click", function() {
     dialog.showModal();
+
+    let title = document.querySelector('#title');
+    let author = document.querySelector('#author');
+    let pages = document.querySelector('#pages');
+    let read = document.querySelector('#read');
+
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    read.checked = false;
 });
 
 //Event Listener that puts the form into the Book object, then the myLibrary Array,
 // then displays the library, and closes the modal 
-submitForm.addEventListener("click", function(event) {
-    let title = document.querySelector("#title");
+dialogForm.addEventListener("close", function() {
+    let title = document.querySelector('#title');
     let author = document.querySelector('#author');
     let pages = document.querySelector('#pages');
     let read = document.querySelector('#read');
@@ -290,9 +300,6 @@ submitForm.addEventListener("click", function(event) {
     addBookToLibrary(title.value, author.value, pages.value, read.checked);
 
     displayBooksInDocument(checkNumBooksOnShelf());
-
-    event.preventDefault();
-    dialog.close()
 });
 
 // Event Listeners for when the user changes the screen width to redisplay the 
