@@ -57,8 +57,8 @@ body {
     background-size: 300px;
     height: 285px;
     width: 300px;
-    bottom: 0px;
-    margin-bottom: 77px;
+    top: 63px;
+    transform: rotate(359deg);
 }
 
 .button-container {
@@ -70,9 +70,9 @@ body {
     height: 200px;
     background-image: url(./books-are-piled-up-vector-1397561-removebg-preview.png);
     background-size: 312px;
-    bottom: 0px;
+    top: 131px;
     right: 50px;
-    margin-bottom: 77px;
+    transform: rotate(0.5deg);
 }
 
 .add-book{
@@ -89,18 +89,6 @@ body {
     background-color: rgb(228, 217, 217);
 }
 
-.shelf-top {
-    position: absolute;
-    border: 20px solid black;
-    height: 100px;
-    top: 305px;
-    left: 32px;
-    right: 33px;
-    border-bottom: 0px;
-    border-top: 0px;
-    background-image: url(./istockphoto-1372488781-612x612.jpg);
-}
-
 .main-book-shelf {
     position: relative;
     flex-basis: 80%;
@@ -114,12 +102,71 @@ body {
     padding-bottom: 660px;
 }
 
+.back-of-book-shelf {
+    position: absolute;
+    border: 2px solid black;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+    bottom: 50px;
+}
+
+.top-left-of-book-shelf {
+    position: absolute;
+    border: 2px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    top: -12px;
+    left: 25px;
+    height: 75px;
+    transform: rotate(315deg);
+}
+
+.bottom-left-of-book-shelf {
+    position: absolute;
+    border: 2px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    bottom: -12px;
+    left: 25px;
+    height: 75px;
+    transform: rotate(45deg);
+}
+
+.top-right-of-book-shelf {
+    position: absolute;
+    border: 2px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left: 0px;
+    top: -12px;
+    right: 25px;
+    height: 75px;
+    transform: rotate(45deg);
+}
+
+.bottom-right-of-book-shelf {
+    position: absolute;
+    border: 2px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left: 0px;
+    bottom: -12px;
+    right: 25px;
+    height: 75px;
+    transform: rotate(315deg);
+}
+
 .shelf {
     position: absolute;
     border-bottom: 40px double black;
     top: 41.3rem;
     left: 0;
     right: 0;
+    background-image: url(istockphoto-1372488781-612x612.jpg);
+    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .open-shelf-area {
@@ -132,6 +179,7 @@ body {
 }
 
 .book {
+    position: relative;
     display: flex;
     justify-content: center;
     height: 660px;
